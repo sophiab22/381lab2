@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="musicApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Music Application: Angular</title>
+
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="angular/angular.js"></script>
+  <script src="js/controllers.js"></script>
+</head>
+<body ng-controller="MusicListCtrl">
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-md-2">
+    <header>
+      <h1>Music Albums</h1>
+      <nav>
+        <ul>
+          <li>SEARCH: <input ng-model="query"></li>
+          <li>SORT BY:
+           <select ng-model="orderProp">
+              <option value="artist">Alphabetical</option>
+              <option value="year">Recently Released</option>
+            </select>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    </div>
+
+    <!-- Body Content -->
+    <div class="col-md-10">
+      <ul class="albums">
+        <li ng-repeat="music in musics | filter:query | orderBy:orderProp ">
+          <img ng-src="{{music.imageUrl}}">
+          <h3>{{music.artist}}</h3>
+          
+          <p>
+            <strong>{{music.album}}</strong><br>
+            {{music.released}}
+          </p>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
